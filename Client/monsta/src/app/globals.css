@@ -1,0 +1,102 @@
+@import "tailwindcss";
+
+*{
+  font-family: var(--font-lato), Arial, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-color: #C09578 #f3f3f3;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f3f3f3;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C09578;
+  border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #a87c5f;
+}
+
+body {
+  font-family: var(--font-lato), Arial, sans-serif;
+  color: #212121;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-playfair), Georgia, serif;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+
+h4, h5, h6 {
+  font-family: var(--font-playfair), Georgia, serif;
+  letter-spacing: 0;
+}
+
+button,
+input,
+textarea,
+select,
+nav,
+label {
+  font-family: var(--font-lato), Arial, sans-serif;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Custom Label Styling */
+.label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #2c2c2c;
+  margin-bottom: 8px;
+}
+
+/* Custom Input Styling */
+.inputUI {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 14px;
+  color: #2c2c2c;
+  background-color: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.inputUI:focus {
+  border-color: #C9A882;
+  box-shadow: 0 0 0 3px rgba(201, 168, 130, 0.1);
+}
+
+/* Custom Button Styling */
+.btnUI {
+  padding: 12px 32px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #2c2c2c;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btnUI:hover {
+  background-color: #1a1a1a;
+}
+
