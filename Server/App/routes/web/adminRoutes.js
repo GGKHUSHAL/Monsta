@@ -1,0 +1,40 @@
+let express = require("express")
+const { colorRouter } = require("../admin/colorRouter")
+const { materialRouter } = require("../admin/materialRoutes")
+const { faqRouter } = require("../admin/faqRouter")
+const { countryRouter } = require("../admin/countryRoutes")
+const { categoryRouter } = require("../admin/categoryRouter")
+const { subcategoryRouter } = require("../admin/subcategoryRouter")
+const { subsubcategoryRouter } = require("../admin/subsubcategoryRouter")
+const { testimonialRouter } = require("../admin/testimonialRouter")
+const { whyChooseRouter } = require("../admin/whyChooseRouter")
+const { aboutWhyChooseRouter } = require("../admin/aboutWhyChooseRouter")
+const { sliderRouter } = require("../admin/sliderRouter")
+const { productRouter } = require("../admin/productRouter")
+const { adminRouter } = require("../admin/adminRouter")
+const { contactQueryRouter } = require("../admin/contactQueryRouter")
+const { newsletterRouter } = require("../admin/newsletterRouter")
+const { orderRouter } = require("../admin/orderRoutes")
+
+
+let adminRoute = express.Router()  //API create
+
+adminRoute.use("/admin",adminRouter )
+
+adminRoute.use("/color",colorRouter)
+adminRoute.use("/faq",faqRouter)
+adminRoute.use("/material",materialRouter)
+adminRoute.use("/country", countryRouter)
+adminRoute.use("/testimonial", testimonialRouter)
+adminRoute.use("/why-choose-us", whyChooseRouter)
+adminRoute.use("/about-why-choose-us", aboutWhyChooseRouter)
+adminRoute.use("/slider",sliderRouter)
+adminRoute.use("/category", categoryRouter)
+adminRoute.use("/subcategory", subcategoryRouter)
+adminRoute.use("/subsubcategory", subsubcategoryRouter)
+adminRoute.use("/product", productRouter)
+adminRoute.use("/contact-query", contactQueryRouter)
+adminRoute.use("/newsletter", newsletterRouter)
+adminRoute.use("/order", orderRouter)
+
+module.exports = {adminRoute}
