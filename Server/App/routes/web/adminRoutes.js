@@ -15,6 +15,7 @@ const { adminRouter } = require("../admin/adminRouter")
 const { contactQueryRouter } = require("../admin/contactQueryRouter")
 const { newsletterRouter } = require("../admin/newsletterRouter")
 const { orderRouter } = require("../admin/orderRoutes")
+const { userRouter } = require("../admin/userRouter")
 
 
 let adminRoute = express.Router()  //API create
@@ -36,5 +37,6 @@ adminRoute.use("/product", productRouter)
 adminRoute.use("/contact-query", contactQueryRouter)
 adminRoute.use("/newsletter", newsletterRouter)
 adminRoute.use("/order", orderRouter)
+adminRoute.use("/user", userRouter)
 
 module.exports = {adminRoute}

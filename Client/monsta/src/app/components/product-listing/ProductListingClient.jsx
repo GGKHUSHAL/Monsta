@@ -39,6 +39,27 @@ const getProductCategoryLabel = (product) =>
   product?._productParentCategory?._categoryName ||
   "Product";
 
+const getProductType = (product) =>
+  normalize(product?._productType).toLowerCase();
+
+const matchesCollection = (product, collection) => {
+  if (!collection) return true;
+
+  if (collection === "featured") {
+    return getProductType(product) === "featured";
+  }
+
+  if (collection === "onsale") {
+    return Boolean(product?._productSalePrice) || getProductType(product) === "onsale";
+  }
+
+  if (collection === "best-selling") {
+    return Boolean(product?._bestSelling);
+  }
+
+  return true;
+};
+
 function ToggleCheckbox({ checked, label, onChange }) {
   return (
     <label className="flex items-center gap-3 text-[14px] text-[#333] leading-6 cursor-pointer">
@@ -190,6 +211,7 @@ export default function ProductListingClient({
   products = [],
   categories = [],
   initialFilter = null,
+  initialCollection = "",
 }) {
   const maxProductPrice = useMemo(() => {
     let prices = products.map(getProductPrice).filter(Boolean);
@@ -209,7 +231,8 @@ export default function ProductListingClient({
   const [selectedColors, setSelectedColors] = useState([]);
   const [priceValue, setPriceValue] = useState(maxProductPrice);
   const [appliedPrice, setAppliedPrice] = useState(maxProductPrice);
-  const [sortValue, setSortValue] = useState("featured");
+  const [sortValue, setSortValue] = useState(initialCollection || "featured");
+  const [collectionValue, setCollectionValue] = useState(initialCollection);
 
   const materialOptions = useMemo(() => {
     let map = new Map();
@@ -255,6 +278,7 @@ export default function ProductListingClient({
     setSelectedColors([]);
     setPriceValue(maxProductPrice);
     setAppliedPrice(maxProductPrice);
+    setCollectionValue("");
   };
 
   const hasCategoryFilter =
@@ -265,7 +289,8 @@ export default function ProductListingClient({
     hasCategoryFilter ||
     selectedMaterials.length > 0 ||
     selectedColors.length > 0 ||
-    appliedPrice < maxProductPrice;
+    appliedPrice < maxProductPrice ||
+    Boolean(collectionValue);
 
   const filteredProducts = useMemo(() => {
     let data = products.filter((product) => {
@@ -291,8 +316,15 @@ export default function ProductListingClient({
         selectedColors.some((color) => productColors.includes(color));
 
       let matchesPrice = getProductPrice(product) <= appliedPrice;
+      let matchesSelectedCollection = matchesCollection(product, collectionValue);
 
-      return matchesCategory && matchesMaterial && matchesColor && matchesPrice;
+      return (
+        matchesCategory &&
+        matchesMaterial &&
+        matchesColor &&
+        matchesPrice &&
+        matchesSelectedCollection
+      );
     });
 
     return [...data].sort((a, b) => {
@@ -323,6 +355,7 @@ export default function ProductListingClient({
     appliedPrice,
     hasCategoryFilter,
     products,
+    collectionValue,
     selectedCategoryIds,
     selectedColors,
     selectedMaterials,

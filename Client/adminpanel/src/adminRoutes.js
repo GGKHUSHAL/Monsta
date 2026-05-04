@@ -34,6 +34,7 @@ import ProductDetails from "./Pages/Product/ProductDetails";
 import ViewProduct from "./Pages/Product/ViewProducts";
 import ViewContactQueries from "./Pages/ContactQuery/ViewContactQueries";
 import ViewNewsletterSubscribers from "./Pages/Newsletter/ViewNewsletterSubscribers";
+import ViewUsers from "./Pages/User/ViewUsers";
 
 
 export const adminRoutes = [
@@ -125,6 +126,12 @@ export const adminRoutes = [
         name: "Contact Queries",
         routes: [
             { path: "/contact-query/view", component: ViewContactQueries },
+        ],
+    },
+    {
+        name: "Users",
+        routes: [
+            { path: "/user/view", component: ViewUsers },
         ],
     },
     {

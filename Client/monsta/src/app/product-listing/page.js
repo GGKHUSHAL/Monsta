@@ -5,6 +5,12 @@ export const metadata = {
   description: "Browse all Monsta E-COM products with category, material, color, price and sorting filters.",
 };
 
-export default function ProductListingPage() {
-  return <ProductListingPageShell />;
+export default async function ProductListingPage({ searchParams }) {
+  const params = await searchParams;
+
+  return (
+    <ProductListingPageShell
+      collection={params?.collection}
+    />
+  );
 }

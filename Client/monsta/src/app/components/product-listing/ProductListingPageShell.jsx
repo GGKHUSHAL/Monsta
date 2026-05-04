@@ -32,7 +32,12 @@ const findInitialFilter = (categories, type, slug) => {
   return null;
 };
 
-export default async function ProductListingPageShell({ filterType, slug }) {
+const allowedCollections = ["featured", "onsale", "best-selling"];
+
+const getInitialCollection = (collection) =>
+  allowedCollections.includes(collection) ? collection : "";
+
+export default async function ProductListingPageShell({ filterType, slug, collection }) {
   const [productsRes, categoriesRes] = await Promise.all([
     getProductbyType(),
     getHeaderCategories(),
@@ -41,12 +46,14 @@ export default async function ProductListingPageShell({ filterType, slug }) {
   const products = productsRes?.data || [];
   const categories = categoriesRes?.data || [];
   const initialFilter = findInitialFilter(categories, filterType, slug);
+  const initialCollection = getInitialCollection(collection);
 
   return (
     <ProductListingClient
       products={products}
       categories={categories}
       initialFilter={initialFilter}
+      initialCollection={initialCollection}
     />
   );
 }

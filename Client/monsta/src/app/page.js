@@ -6,6 +6,7 @@ import TestimonialSlider from "./components/home/Customers";
 import NewsletterForm from "./components/home/NewsletterForm";
 import WhyChooseUs from "./components/home/WhyChooseUs";
 import { getHomePageData, getProductbyType } from "./services/homeServices";
+import Link from "next/link";
 
 export default async function Home() {
 
@@ -40,7 +41,10 @@ export default async function Home() {
       <div className="w-full py-10 bg-amber-50 text-black">
         <div className="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-6 px-4">
 
-          <div className="relative h-[260px] overflow-hidden bg-yellow-400 group">
+          <Link
+            href="/product-listing?collection=featured"
+            className="relative block h-[260px] overflow-hidden bg-yellow-400 group"
+          >
             <img
               src="/chair1.jpg"
               alt="chair"
@@ -56,9 +60,12 @@ export default async function Home() {
                 Chair Collection
               </h3>
             </div>
-          </div>
+          </Link>
 
-          <div className="relative h-[260px] overflow-hidden bg-red-600 group">
+          <Link
+            href="/product-listing?collection=best-selling"
+            className="relative block h-[260px] overflow-hidden bg-red-600 group"
+          >
             <img
               src="/chair2.jpg"
               alt="chair"
@@ -74,9 +81,12 @@ export default async function Home() {
                 Chair Collection
               </h3>
             </div>
-          </div>
+          </Link>
 
-          <div className="relative h-[260px] overflow-hidden bg-yellow-400 group">
+          <Link
+            href="/product-listing?collection=onsale"
+            className="relative block h-[260px] overflow-hidden bg-yellow-400 group"
+          >
             <img
               src="/chair3.jpg"
               alt="chair"
@@ -92,7 +102,7 @@ export default async function Home() {
                 Chair Collection
               </h3>
             </div>
-          </div>
+          </Link>
 
         </div>
       </div>

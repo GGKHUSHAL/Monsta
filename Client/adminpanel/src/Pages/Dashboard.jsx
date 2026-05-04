@@ -59,7 +59,7 @@ export default function Dashboard() {
     };
 
     const requests = [
-      axios.get(`${apiBaseUrl}admin/get-admin-list`, { headers }),
+      axios.get(`${apiBaseUrl}user/view`, { headers }),
       axios.get(`${apiBaseUrl}product/view`),
       axios.get(`${apiBaseUrl}category/view`),
       axios.get(`${apiBaseUrl}order/view`, { headers }),
@@ -71,7 +71,7 @@ export default function Dashboard() {
     setStats({
       users:
         usersRes.status === "fulfilled" && usersRes.value.data?._status
-          ? usersRes.value.data.userData?.length || 0
+          ? usersRes.value.data.data?.length || 0
           : 0,
       products:
         productsRes.status === "fulfilled" && productsRes.value.data?._status
@@ -166,13 +166,17 @@ export default function Dashboard() {
       <hr className="mb-6 border-gray-200" />
 
       <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
-        <div className="rounded-lg bg-indigo-600 p-6 text-white shadow-lg transition hover:scale-105">
+        <button
+          type="button"
+          onClick={() => navigate("/user/view")}
+          className="rounded-lg bg-indigo-600 p-6 text-left text-white shadow-lg transition hover:scale-105 focus:outline-none focus:ring-2 focus:ring-indigo-300"
+        >
           <div className="flex items-center justify-between">
             <h2 className="text-4xl font-bold">{stats.users}</h2>
             <FaUsers size={30} />
           </div>
           <p className="mt-3 text-xl">Users</p>
-        </div>
+        </button>
 
         <div className="rounded-lg bg-blue-500 p-6 text-white shadow-lg transition hover:scale-105">
           <div className="flex items-center justify-between">
