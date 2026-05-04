@@ -27,7 +27,7 @@ App.use("/web", webRoute)
 App.use("/uploads/profile", express.static("uploads/profile"))  //static file access
 App.use("/uploads", express.static("uploads"));  //static file access
 
-mongoose.connect('mongodb://127.0.0.1:27017/monsta')
+mongoose.connect(process.env.CONNECTIONURL || 'mongodb://127.0.0.1:27017/monsta')
     .then((res) => {
         App.listen(process.env.PORT || 8000, async () => {
             console.log(process.env.PORT || 8000, "Server Started")
