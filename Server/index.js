@@ -8,7 +8,7 @@ const { webRoute } = require('./App/routes/web/webRoutes');
 const { adminRoute } = require('./App/routes/web/adminRoutes');
 App.use(cors())
 App.use(express.json())
-require("dotenv").config({ path: path.join(__dirname, ".env"), override: true })
+require("dotenv").config({ path: path.join(__dirname, ".env") })
 
 App.use("/admin", adminRoute)
 App.use("/uploads/category", express.static("uploads/category"))  //static file access
