@@ -24,7 +24,7 @@ import ViewSubSubCategories from "./Pages/SubSubCategory/ViewSubSubCategories";
 import AddProduct from "./Pages/Product/AddProduct";
 
 import Dashboard from "./Pages/Dashboard";
-import AddFAQ from "./Pages/Faq/AddFaQ";
+import AddFAQ from "./Pages/Faq/AddFaq";
 import ViewFAQ from "./Pages/Faq/ViewFaq";
 import AddCountry from "./Pages/Country/AddCountry";
 import ViewCountry from "./Pages/Country/ViewCountry";
