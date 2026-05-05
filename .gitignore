@@ -1,0 +1,11 @@
+.env
+node_modules/
+.next/
+dist/
+build/
+server-live*.log
+server-live*.err.log
+backups/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

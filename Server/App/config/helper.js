@@ -19,8 +19,8 @@ const transporter = nodemailer.createTransport({
   port: 587,
   secure: false, // use STARTTLS (upgrade connection to TLS after connecting)
   auth: {
-    user: "khushalchoudhary116@gmail.com",
-    pass: "ztjs edps wueb ajbv",
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
   },
   tls: {
     rejectUnauthorized: false, // ✅ FIX

@@ -10,6 +10,21 @@ App.use(cors())
 App.use(express.json())
 require("dotenv").config({ path: path.join(__dirname, ".env") })
 
+const getMongoUri = () => {
+    const fallbackDbName = process.env.MONGODB_DBNAME || "monsta";
+    const rawUri = process.env.CONNECTIONURL || `mongodb://127.0.0.1:27017/${fallbackDbName}`;
+
+    try {
+        const parsedUri = new URL(rawUri);
+        if (!parsedUri.pathname || parsedUri.pathname === "/") {
+            parsedUri.pathname = `/${fallbackDbName}`;
+        }
+        return parsedUri.toString();
+    } catch (error) {
+        return rawUri;
+    }
+}
+
 App.use("/admin", adminRoute)
 App.use("/uploads/category", express.static("uploads/category"))  //static file access
 App.use("/uploads/subcategory", express.static("uploads/subcategory"))  //static file access
@@ -27,7 +42,7 @@ App.use("/web", webRoute)
 App.use("/uploads/profile", express.static("uploads/profile"))  //static file access
 App.use("/uploads", express.static("uploads"));  //static file access
 
-mongoose.connect(process.env.CONNECTIONURL || 'mongodb://127.0.0.1:27017/monsta')
+mongoose.connect(getMongoUri())
     .then((res) => {
         App.listen(process.env.PORT || 8000, async () => {
             console.log(process.env.PORT || 8000, "Server Started")
